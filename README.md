@@ -17,7 +17,7 @@
 
 ## Registry
 
-- [MAM Hub](https://github.com/tcp-ecosystem/MAM/tree/main/registry) — production module registry: HTTP + GraphQL + typed client, persistent auth, integrity-verified tarballs.
+- [MAM Hub](https://mam-hub.onrender.com) — live production registry ([source](https://github.com/tcp-ecosystem/MAM/tree/main/registry)): HTTP + GraphQL + typed client, integrity-verified tarballs.
 
 ## Founding Modules
 

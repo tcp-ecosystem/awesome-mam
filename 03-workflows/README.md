@@ -1,13 +1,15 @@
 # Level 3 — Workflows
 
-> Contract definition for the third reference level. A workflow is an
-> **orchestrated process**: it sequences Level 1 capabilities and Level 2
-> components into a multi-step business process with declared failure
-> semantics — what is retried, what is compensated, what can never happen
-> twice.
+> Orchestrated processes, **complete in this folder**: two reference workflows
+> with declared failure semantics. A workflow sequences Level 1 capabilities
+> and Level 2 components into a multi-step business process — what is retried,
+> what is compensated, what can never happen twice.
 
-The workflows themselves are authored here next. This README is the complete
-usage and authoring contract they must satisfy.
+Both reference workflows are authored here, each satisfying the complete
+contract below:
+
+- [`order-fulfillment`](order-fulfillment.mam.md) — validate → reserve → charge → notify, with release compensation and a run ledger; composes `pacing-circuit` (Level 2) + `schema-validator`
+- [`dataset-publish`](dataset-publish.mam.md) — schema gate → paced upload → structured completion record; composes four Level 1 modules directly (the no-component pattern)
 
 ---
 

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/tcp-ecosystem/awesome-mam/tree/main/docs
+    about: Getting started, level guides, and how the gates work
+  - name: MAM source repository
+    url: https://github.com/tcp-ecosystems/MAM
+    about: The language, CLI, runtime, and Hub

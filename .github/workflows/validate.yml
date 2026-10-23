@@ -1,0 +1,63 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  library:
+    name: library gate (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Execute every reference file and its tests
+        run: python scripts/harness.py
+
+      - name: Verify every .mam.md has an identical .mam twin
+        run: python scripts/check_twins.py
+
+  placement:
+    name: system placement
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the system manifest against the files on disk
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          source = Path("05-systems/system.mam.md").read_text(encoding="utf-8")
+          body = re.findall(r"```python\n(.*?)```", source, re.S)[0]
+          namespace = {}
+          exec(compile(body, "system", "exec"), namespace)
+          manifest = namespace["MANIFEST"]
+
+          missing = [m["path"] for m in manifest.values()
+                     if not Path(m["path"]).exists()]
+          twins = [m["path"] for m in manifest.values()
+                   if not Path(m["path"][:-len(".md")]).exists()]
+          present = {member: {"valid": True} for member in manifest}
+          verdict = namespace["verify"](present)
+          print(f"members: {verdict['members']}, verdict: {verdict['code'] or 'OK'}")
+
+          if missing:
+              raise SystemExit(f"missing member files: {missing}")
+          if twins:
+              raise SystemExit(f"missing twins: {twins}")
+          if not verdict["valid"]:
+              raise SystemExit(f"composition refused: {verdict}")
+          PY

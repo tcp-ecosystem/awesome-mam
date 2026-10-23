@@ -28,17 +28,26 @@ everything above composes instead of re-inventing.
 
 Every level is executable today: `mam run 01-modules/schema-validator.mam.md`,
 `mam test 03-workflows/order-fulfillment.mam.md`, `mam validate awesome-mam` —
-all 26 files ship `.mam` + `.mam.md` twins and pass the full validator
-(19 rules). The system root's verifier enforces the composition: twelve
-members, downward-only edges, explicit refusals.
+all 17 sources ship `.mam` + `.mam.md` twins (34 files validated) and pass
+the full validator (19 rules). The system root's verifier enforces the
+composition: twelve members, downward-only edges, explicit refusals.
 
 The whole library is also gated by a Python harness that executes every
-module body and every test block in dependency order — **160 test cases**,
+module body and every test block in dependency order — **193 test cases**,
 included so you can prove the ladder to yourself, not take it on faith.
+
+## Using this repository
+
+- **New here?** [Getting started](docs/getting-started.md) — clone, run the gate, copy a template.
+- **Writing a file?** [Level guides](docs/level-guides.md) — which rung answers your question, and the acceptance bar at each.
+- **Need a scaffold?** [Templates](templates/README.md) — one correct, executable starting point per level.
+- **Verifying the claim?** [Verification](docs/verification.md) + [scripts/](scripts/README.md) — the same gates CI runs.
+- **Contributing?** [Pull request template](.github/PULL_REQUEST_TEMPLATE.md) — the add-yours checklist, with level-specific requirements.
 
 ## Contents
 
 - [Library](#library)
+- [Using this repository](#using-this-repository)
 - [Registry](#registry)
 - [Founding Modules](#founding-modules)
 - [Templates](#templates)
@@ -84,7 +93,13 @@ mam install example-agent
 
 ## Templates
 
-Scaffold your own (`mam new <type> <name>`). Nineteen types, basic + advanced:
+This repository's ready-made, executable starting points — one per level,
+each with passing tests — live in [`templates/`](templates/README.md):
+[module](templates/module/README.md) · [component](templates/component/README.md) ·
+[workflow](templates/workflow/README.md) · [service](templates/service/README.md).
+
+To scaffold through the CLI instead (`mam new <type> <name>`), nineteen types,
+basic + advanced:
 
 `agent` · `component` · `contract` · `documentation` · `extension` ·
 `interface` · `memory` · `module` · `package` · `plugin` · `policy` ·

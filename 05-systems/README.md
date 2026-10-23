@@ -11,8 +11,14 @@
 > would describe a repository to a new engineer — except the description
 > compiles.
 
-The first fully authored reference system lands here next, composing
-everything below it. This README is its complete usage and authoring contract.
+The reference system is authored here — [`system.mam.md`](system.mam.md) + [`mam.toml`](mam.toml),
+composing all twelve members below it:
+
+- 5 Level 1 modules · 3 Level 2 components · 2 Level 3 workflows · 2 Level 4 services
+- The composition contract: manifest check, per-member gate, downward-only graph — with a verifier whose `EDGES` constant the Mermaid diagram must match
+- Declared compile targets: `python`, `openai`, `langgraph`
+
+This README is the complete usage and authoring contract the system satisfies.
 
 ---
 

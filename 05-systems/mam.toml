@@ -1,0 +1,18 @@
+# MAM system manifest — machines read this; humans read system.mam.md
+#
+# The member list lives in system.mam.md (single source of truth). This file
+# exists for the tools: mam validate / mam build / mam compile, and the Hub
+# registry the members resolve from.
+
+[system]
+id = "orders-platform"
+name = "Orders Platform (Reference System)"
+version = "1.0.0"
+description = "Reference system composed from all four levels of this library"
+
+[targets]
+compile = ["python", "openai", "langgraph"]
+
+[registry]
+hub = "https://mam-hub.onrender.com"
+# members resolved from the Hub keep integrity-verified tarballs + lockfiles

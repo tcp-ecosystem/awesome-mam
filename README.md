@@ -21,14 +21,20 @@ everything above composes instead of re-inventing.
 | Level | Folder | What lives there | Status |
 |-------|--------|------------------|--------|
 | 1 | [`01-modules/`](01-modules/README.md) | Capabilities: validation, retry, pacing, logging, config | **5 reference modules, complete** |
-| 2 | [`02-components/`](02-components/README.md) | Stateful building blocks with interfaces, composing Level 1 | contract complete; components next |
-| 3 | [`03-workflows/`](03-workflows/README.md) | Orchestrated processes with declared failure semantics | contract complete |
-| 4 | [`04-services/`](04-services/README.md) | Deployable units: lifecycle, health, telemetry | contract complete |
-| 5 | [`05-systems/`](05-systems/README.md) | A real repository as one described, compilable system | contract complete |
+| 2 | [`02-components/`](02-components/README.md) | Stateful building blocks with interfaces, composing Level 1 | **3 reference components, complete** |
+| 3 | [`03-workflows/`](03-workflows/README.md) | Orchestrated processes with declared failure semantics | **2 reference workflows, complete** |
+| 4 | [`04-services/`](04-services/README.md) | Deployable units: lifecycle, health, telemetry | **2 reference services, complete** |
+| 5 | [`05-systems/`](05-systems/README.md) | A real repository as one described, compilable system | **1 reference system, complete** |
 
-Level 1 modules are executable today: `mam run 01-modules/schema-validator.mam.md`,
-`mam test 01-modules/config-loader.mam.md`, `mam validate awesome-mam` — all ten
-files ship `.mam` + `.mam.md` twins and pass the full validator (19 rules).
+Every level is executable today: `mam run 01-modules/schema-validator.mam.md`,
+`mam test 03-workflows/order-fulfillment.mam.md`, `mam validate awesome-mam` —
+all 26 files ship `.mam` + `.mam.md` twins and pass the full validator
+(19 rules). The system root's verifier enforces the composition: twelve
+members, downward-only edges, explicit refusals.
+
+The whole library is also gated by a Python harness that executes every
+module body and every test block in dependency order — **160 test cases**,
+included so you can prove the ladder to yourself, not take it on faith.
 
 ## Contents
 

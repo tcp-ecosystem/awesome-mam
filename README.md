@@ -1,13 +1,38 @@
 # Awesome MAM
 
-[![MAM](https://img.shields.io/badge/language-MAM-blue)](https://github.com/tcp-ecosystem/MAM)
-[![Registry](https://img.shields.io/badge/registry-live-green)](https://github.com/tcp-ecosystem/MAM/tree/main/registry)
-[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/tcp-ecosystem/MAM/blob/main/LICENSE)
+[![MAM](https://img.shields.io/badge/language-MAM-blue)](https://github.com/tcp-ecosystems/MAM)
+[![Registry](https://img.shields.io/badge/registry-live-green)](https://github.com/tcp-ecosystems/MAM/tree/main/registry)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/tcp-ecosystems/MAM/blob/main/LICENSE)
 
-> Curated modules, tools, and resources for [MAM (Machine Agent Modules)](https://github.com/tcp-ecosystem/MAM) — *describe systems, compile anywhere.*
+> Curated modules, tools, and resources for [MAM (Machine Agent Modules)](https://github.com/tcp-ecosystems/MAM) — *describe systems, compile anywhere.*
+
+**A real GitHub repository can be described with MAM, organized as a
+production-grade system, and compiled into implementation targets. A developer
+outside the TCP Ecosystem independently creates a MAM module and uses it in a
+real workflow without requiring the core developer to build it for them.**
+
+That is what this list exists to make routine: the five folders under
+[Library](#library) are a production-grade reference ladder from a single
+capability to a whole described repository — written once, per level, so
+everything above composes instead of re-inventing.
+
+## Library
+
+| Level | Folder | What lives there | Status |
+|-------|--------|------------------|--------|
+| 1 | [`01-modules/`](01-modules/README.md) | Capabilities: validation, retry, pacing, logging, config | **5 reference modules, complete** |
+| 2 | [`02-components/`](02-components/README.md) | Stateful building blocks with interfaces, composing Level 1 | contract complete; components next |
+| 3 | [`03-workflows/`](03-workflows/README.md) | Orchestrated processes with declared failure semantics | contract complete |
+| 4 | [`04-services/`](04-services/README.md) | Deployable units: lifecycle, health, telemetry | contract complete |
+| 5 | [`05-systems/`](05-systems/README.md) | A real repository as one described, compilable system | contract complete |
+
+Level 1 modules are executable today: `mam run 01-modules/schema-validator.mam.md`,
+`mam test 01-modules/config-loader.mam.md`, `mam validate awesome-mam` — all ten
+files ship `.mam` + `.mam.md` twins and pass the full validator (19 rules).
 
 ## Contents
 
+- [Library](#library)
 - [Registry](#registry)
 - [Founding Modules](#founding-modules)
 - [Templates](#templates)
@@ -17,11 +42,11 @@
 
 ## Registry
 
-- [MAM Hub](https://mam-hub.onrender.com) — live production registry ([source](https://github.com/tcp-ecosystem/MAM/tree/main/registry)): HTTP + GraphQL + typed client, integrity-verified tarballs.
+- [MAM Hub](https://mam-hub.onrender.com) — live production registry ([source](https://github.com/tcp-ecosystems/MAM/tree/main/registry)): HTTP + GraphQL + typed client, integrity-verified tarballs.
 
 ## Founding Modules
 
-Live on MAM Hub (v2.0.0 unless noted). Source: [`modules/examples/`](https://github.com/tcp-ecosystem/MAM/tree/main/modules/examples).
+Live on MAM Hub (v2.0.0 unless noted). Source: [`modules/examples/`](https://github.com/tcp-ecosystems/MAM/tree/main/modules/examples).
 
 | Module | Type | What it does |
 |--------|------|--------------|
@@ -60,7 +85,7 @@ Scaffold your own (`mam new <type> <name>`). Nineteen types, basic + advanced:
 `repository` · `resource` · `runtime` · `service` · `system` · `team` ·
 `tool` · `workflow`
 
-Source: [`modules/templates/`](https://github.com/tcp-ecosystem/MAM/tree/main/modules/templates).
+Source: [`modules/templates/`](https://github.com/tcp-ecosystems/MAM/tree/main/modules/templates).
 
 ## Editors
 
@@ -68,13 +93,13 @@ Source: [`modules/templates/`](https://github.com/tcp-ecosystem/MAM/tree/main/mo
 |--------|---------|-------|
 | VS Code | [`arkhangellifejiggy.mam-language`](https://open-vsx.org/extension/arkhangellifejiggy/mam-language) (OpenVSX) | Syntax, snippets, diagnostics, commands |
 | VSCodium / Cursor / Windsurf | same OpenVSX package | Install from Open VSX registry |
-| Neovim / Vim / Sublime / Emacs / JetBrains / Zed + 8 more | [`desktop-extension/`](https://github.com/tcp-ecosystem/MAM/tree/main/desktop-extension) | 14 editors covered |
+| Neovim / Vim / Sublime / Emacs / JetBrains / Zed + 8 more | [`desktop-extension/`](https://github.com/tcp-ecosystems/MAM/tree/main/desktop-extension) | 14 editors covered |
 
 ## Spec & Docs
 
-- [Specification](https://github.com/tcp-ecosystem/MAM/blob/main/spec/SPEC.md)
-- [Usage guide](https://github.com/tcp-ecosystem/MAM/blob/main/usage.md)
-- [Purpose](https://github.com/tcp-ecosystem/MAM/blob/main/purpose.md) · [Goal](https://github.com/tcp-ecosystem/MAM/blob/main/goal.md) · [Scope](https://github.com/tcp-ecosystem/MAM/blob/main/scope.md) · [Brain](https://github.com/tcp-ecosystem/MAM/blob/main/brain.md)
+- [Specification](https://github.com/tcp-ecosystems/MAM/blob/main/spec/SPEC.md)
+- [Usage guide](https://github.com/tcp-ecosystems/MAM/blob/main/usage.md)
+- [Purpose](https://github.com/tcp-ecosystems/MAM/blob/main/purpose.md) · [Goal](https://github.com/tcp-ecosystems/MAM/blob/main/goal.md) · [Scope](https://github.com/tcp-ecosystems/MAM/blob/main/scope.md) · [Brain](https://github.com/tcp-ecosystems/MAM/blob/main/brain.md)
 
 ## Contribute
 

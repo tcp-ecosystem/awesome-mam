@@ -1,12 +1,14 @@
 # Level 4 — Services
 
-> Contract definition for the fourth reference level. A service is the first
-> level that *exists continuously*: it boots, it responds to the world while
-> running, and it shuts down without orphaning work. Modules are capabilities;
-> workflows are processes; a service is the deployable skin around both.
+> Deployable continuous processes, **complete in this folder**: two reference
+> services. A service is the first level that *exists continuously*: it boots,
+> it responds to the world while running, and it shuts down without orphaning
+> work.
 
-The services themselves are authored here next, hosted on the Level 1–3
-primitives. This README is their complete usage and authoring contract.
+Both services are authored here, hosted on the Level 1–3 primitives:
+
+- [`report-worker`](report-worker.mam.md) — boot → submit-under-backpressure → health → drain; composes `config-loader` + `schema-validator` + `structured-logging`
+- [`webhook-receiver`](webhook-receiver.mam.md) — HMAC-authenticated admission with per-producer pacing and a bounded queue; composes `config-loader` + `rate-limiter` + `structured-logging` + `schema-validator`
 
 ---
 

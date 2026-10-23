@@ -1,14 +1,14 @@
 # Level 2 — Components
 
-> Contract definition for the second reference level. A Level 1 module is a
-> capability; a Level 2 component is a *reusable building block with state and
+> Stateful, reusable building blocks, **complete in this folder**: three
+> reference components composing the Level 1 modules. A Level 1 module is a
+> capability; a Level 2 component is a *building block with state and
 > a public interface* — the unit a team copies into their service, configures
 > once, and trusts across the codebase.
 
-This README is the complete usage and authoring contract. The components
-themselves are authored here next, composing the five Level 1 modules from
-[`01-modules/`](../01-modules/README.md) — nothing below is re-implemented,
-only composed.
+Nothing below is re-implemented — every reference component composes the five
+Level 1 modules or modules at this level, guards through their codes, and
+never duplicates their logic.
 
 ---
 
@@ -23,14 +23,14 @@ a required structural consequence:
 | It exposes a **public interface** | An `## Exports` section listing operations with the same envelope discipline Level 1 uses on `run()` |
 | It is **configured**, not hardcoded | Inputs include a config object validated by [`schema-validator`](../01-modules/schema-validator.mam.md); invalid config is rejected at construction, not per call |
 
-## 2. The reference composition story
+## 2. The reference components
 
-The first wave of components is fixed — each one earns its place by composing
-at least two Level 1 modules into something more than their sum:
+All three are **complete** — each composes Level 1 modules into something more
+than their sum:
 
-- `http-runtime` — rate-limited, retrying, logged HTTP boundary: `rate-limiter` + `retry-policy` + `structured-logging`
-- `config-factory` — env-aware config construction and hot reload: `config-loader` + `structured-logging`
-- `pacing-circuit` — admission control with lockout semantics on failure storms: `rate-limiter` + `retry-policy`
+- [`http-runtime`](http-runtime.mam.md) — rate-limited, retrying, logged HTTP boundary: `rate-limiter` + `retry-policy` + `structured-logging` + `schema-validator`
+- [`config-factory`](config-factory.mam.md) — env-aware config construction and hot reload with path-only change audit: `config-loader` + `structured-logging`
+- [`pacing-circuit`](pacing-circuit.mam.md) — admission control with breaker semantics inside a failure storm: `rate-limiter` + `retry-policy` (taxonomy) + `schema-validator`
 
 Higher levels then depend on these: workflows call components; services host
 components; systems wire services. The dependency arrow always points down a
